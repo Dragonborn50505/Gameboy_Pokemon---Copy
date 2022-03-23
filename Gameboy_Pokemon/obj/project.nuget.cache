@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "AL8elCcdPDCyq7Jq7Bm1DFMuNX0at1lwpTh94BMz83+L4OhfTxeb3aqPO0lkuvkpP2Dan5Pkw3KjWk72ZuHfVA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\allinggard.vincent\\Desktop\\Programering\\Gameboy_Pokemon - Copy\\Gameboy_Pokemon\\Gameboy_Pokemon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\allinggard.vincent\\.nuget\\packages\\raylib-cs\\3.7.0.1\\raylib-cs.3.7.0.1.nupkg.sha512",
+    "C:\\Users\\allinggard.vincent\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

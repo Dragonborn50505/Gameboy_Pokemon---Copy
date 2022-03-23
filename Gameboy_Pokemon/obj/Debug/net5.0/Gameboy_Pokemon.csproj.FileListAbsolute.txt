@@ -1,0 +1,44 @@
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.AssemblyReference.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.AssemblyInfoInputs.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.AssemblyInfo.cs
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.CoreCompileInputs.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.exe
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.deps.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.runtimeconfig.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.runtimeconfig.dev.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\ref\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.pdb
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\Raylib-cs.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\linux-x64\native\libraylib.so
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\win-x64\native\raylib.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\win-x86\native\raylib.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.CopyComplete
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\ref\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.pdb
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.genruntimeconfig.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.exe
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.deps.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.runtimeconfig.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.runtimeconfig.dev.json
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\ref\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Gameboy_Pokemon.pdb
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\Raylib-cs.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\linux-x64\native\libraylib.so
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\win-x64\native\raylib.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\bin\Debug\net5.0\runtimes\win-x86\native\raylib.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.AssemblyReference.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.AssemblyInfoInputs.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.AssemblyInfo.cs
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.CoreCompileInputs.cache
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.csproj.CopyComplete
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\ref\Gameboy_Pokemon.dll
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.pdb
+C:\Users\allinggard.vincent\Desktop\Programering\Gameboy_Pokemon - Copy\Gameboy_Pokemon\obj\Debug\net5.0\Gameboy_Pokemon.genruntimeconfig.cache
