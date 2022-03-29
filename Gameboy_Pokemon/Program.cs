@@ -13,7 +13,10 @@ string turn = "player";
 int playerTimer = 0;
 int enemyTimer = 0;
 string potionHp = "inactive";
-
+string[] fightersOptions = { "triangle", "square", "circle"};
+int n = generator.Next(fightersOptions.Length);
+string fightersDecided = fightersOptions[n];
+Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
 
 
 //Generate figures 
@@ -31,6 +34,21 @@ Rectangle potion = new Rectangle(50, 100, 40, 40);
 Raylib.DrawText("Use headbutt", 50, 500, 40, Color.LIGHTGRAY);
 Raylib.DrawText("Use Kick", 50, 550, 40, Color.LIGHTGRAY);
 Raylib.DrawText("Run Away", 400, 450, 40, Color.BLACK);
+
+
+
+
+
+//-----------------Tester-----------------------------------------------------------------------------------------------------
+
+
+
+//-----------------Tester-----------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 Rectangle headbutt = new Rectangle(50, 500, 250, 40);
 Rectangle kick = new Rectangle(50, 550, 200, 40);
@@ -207,6 +225,8 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawRectangleRec(playerRect, Color.BROWN);
             Raylib.DrawRectangleRec(doorRect, Color.BLACK);
             Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
+            Raylib.DrawText($"{fightersDecided}", 50, 100, 40, Color.LIGHTGRAY);
+            
         }
 
         else if (level == "shop")
@@ -243,7 +263,7 @@ while (!Raylib.WindowShouldClose()) //the game
         {
             Vector2 mousePos = Raylib.GetMousePosition(); // give mouse a position
             Raylib.ClearBackground(Color.YELLOW); //drawing out all figures
-            Raylib.DrawText("ai name", 50, 50, 40, Color.LIGHTGRAY);
+            Raylib.DrawText($"{fightersDecided}", 50, 50, 40, Color.LIGHTGRAY);
             Raylib.DrawText($"{hp_ai}", 50, 100, 40, Color.LIGHTGRAY);
             Raylib.DrawText("name", 650, 450, 40, Color.LIGHTGRAY);
             Raylib.DrawText("Attack:", 50, 450, 40, Color.BLACK);
@@ -393,7 +413,7 @@ while (!Raylib.WindowShouldClose()) //the game
         blackAndWhite++;
     }
 
-    if (potionHp == "active" && hp_ai <= 0)
+    while (potionHp == "active" && hp_ai <= 0)
     { //Was planed to give the player a health boost if you bought it but were not able to make it work in time
         int hp = 20;
         fightersHp = +hp;
