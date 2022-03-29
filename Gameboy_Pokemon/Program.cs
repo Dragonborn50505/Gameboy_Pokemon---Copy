@@ -3,17 +3,22 @@ using System.Numerics;
 using Raylib_cs;
 using System.Collections.Generic;
 
+// Ingen strid har hänt
+// Strid påbörjas/setup
+// Strid händer JUST NU
+// Mellan strider
 
 Raylib.InitWindow(800, 600, "The title of my window");
 Raylib.SetTargetFPS(60);
 Random generator = new Random();
-string fight = "hasNotHappend";
+string fight = "noDuring"; // Before, During, Between
+string setup = "noBeingDone";
 float speed = 6f;
 string turn = "player";
 int playerTimer = 0;
 int enemyTimer = 0;
 string potionHp = "inactive";
-string[] fightersOptions = { "triangle", "square", "circle"};
+string[] fightersOptions = { "triangle", "square", "circle" };
 int n = generator.Next(fightersOptions.Length);
 string fightersDecided = fightersOptions[n];
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
@@ -166,12 +171,12 @@ while (!Raylib.WindowShouldClose()) //the game
     else if (Raylib.CheckCollisionRecs(playerRect, doorRect) && level == "outside") //dorr from outside to start
     {
         level = "start";
-         playerRect.x = 300;
-         playerRect.y = 500;
-         doorRect.x = 260;
-         doorRect.y = 560;
-         bossRect.x = 700;
-         bossRect.y = 70;
+        playerRect.x = 300;
+        playerRect.y = 500;
+        doorRect.x = 260;
+        doorRect.y = 560;
+        bossRect.x = 700;
+        bossRect.y = 70;
     }
 
     else if (Raylib.CheckCollisionRecs(playerRect, doorRect2) && level == "outside") //dorr to shop
@@ -226,7 +231,7 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawRectangleRec(doorRect, Color.BLACK);
             Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
             Raylib.DrawText($"{fightersDecided}", 50, 100, 40, Color.LIGHTGRAY);
-            
+
         }
 
         else if (level == "shop")
@@ -259,8 +264,27 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawText("You lost", 400, 280, 40, Color.BLACK);
         }
 
-        if (level == "bossfight" && blackAndWhite >= 120 && fight == "hasNotHappend") //bossfight after starting sequence
+
+        if (blackAndWhite >= 120)
         {
+        setup = "beingDone";
+        }
+        if (setup == "beingDone" && fight == "noDuring")
+        {
+            hp_ai = 100;
+            setup = "noBeingDone";
+
+        }
+        if (fight == "during"){
+             setup = "noBeingDone";
+        }
+
+        
+       
+
+        if (level == "bossfight" && blackAndWhite >= 120 && setup == "noBeingDone") //bossfight after starting sequence
+        {
+            fight = "during";
             Vector2 mousePos = Raylib.GetMousePosition(); // give mouse a position
             Raylib.ClearBackground(Color.YELLOW); //drawing out all figures
             Raylib.DrawText($"{fightersDecided}", 50, 50, 40, Color.LIGHTGRAY);
@@ -384,12 +408,12 @@ while (!Raylib.WindowShouldClose()) //the game
 
             if (hp_ai <= 0) //trigger victory if fight happend
             {
-                fight = "happend";
+                fight = "noDuring";
                 level = "victory";
             }
             if (fightersHp <= 0) //trigger game over
             {
-                fight = "happend";
+               fight = "noDuring";
                 level = "game over";
             }
 
@@ -411,9 +435,10 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.ClearBackground(Color.WHITE);
         }
         blackAndWhite++;
+       
     }
 
-    while (potionHp == "active" && hp_ai <= 0)
+    if (potionHp == "active" && hp_ai <= 0)
     { //Was planed to give the player a health boost if you bought it but were not able to make it work in time
         int hp = 20;
         fightersHp = +hp;
