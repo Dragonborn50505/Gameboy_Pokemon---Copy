@@ -46,6 +46,11 @@ Raylib.DrawText("Run Away", 400, 450, 40, Color.BLACK);
 
 //-----------------Tester-----------------------------------------------------------------------------------------------------
 
+static void playerRecAndDorrRec(Rectangle q, Rectangle w)
+{
+    Raylib.DrawRectangleRec(q, Color.BROWN);
+    Raylib.DrawRectangleRec(w, Color.BLACK);
+}
 
 
 //-----------------Tester-----------------------------------------------------------------------------------------------------
@@ -67,6 +72,7 @@ Rectangle lineHorisontelBossFight = new Rectangle(0, 400, 800, 5);
 Rectangle lineVerticalBossFight = new Rectangle(600, 400, 5, 200);
 Texture2D winterBackground = Raylib.LoadTexture("Vinterprojektet.png");
 
+//  <------ nice
 //hp and time for bossfight
 float time = 0;
 int fightersHp = 100;
@@ -99,6 +105,8 @@ static void DrawShop(Rectangle p, Rectangle d, Rectangle s)
 }
 
 
+
+
 Vector2 movement = new Vector2();
 
 while (!Raylib.WindowShouldClose()) //the game
@@ -108,8 +116,8 @@ while (!Raylib.WindowShouldClose()) //the game
 
     time += Raylib.GetFrameTime();
 
-    //  <------ nice
-    if (time > 60 && fightersHp < 100 && level != "bossfight") // heal gighter if you in combat
+    
+    if (time > 60 && fightersHp < 100 && level != "bossfight" && fight != "during") // heal gighter if you in combat
     {
         fightersHp++;
         time = 0;
@@ -218,21 +226,22 @@ while (!Raylib.WindowShouldClose()) //the game
         if (level == "start")
         {
             Raylib.ClearBackground(Color.BLUE);
-            Raylib.DrawRectangleRec(playerRect, Color.BROWN);
-            Raylib.DrawRectangleRec(doorRect, Color.BLACK);
+            playerRecAndDorrRec(playerRect, doorRect);
             Raylib.DrawRectangleRec(bossRect, Color.PURPLE);
         }
+        
 
         else if (level == "outside")
         {
             Raylib.ClearBackground(Color.PINK);
             Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
-            Raylib.DrawRectangleRec(playerRect, Color.BROWN);
-            Raylib.DrawRectangleRec(doorRect, Color.BLACK);
+            playerRecAndDorrRec(playerRect, doorRect);
             Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
             Raylib.DrawText($"{fightersDecided}", 50, 100, 40, Color.LIGHTGRAY);
 
         }
+
+
 
         else if (level == "shop")
         {
@@ -410,6 +419,8 @@ while (!Raylib.WindowShouldClose()) //the game
             {
                 fight = "noDuring";
                 level = "victory";
+
+                
             }
             if (fightersHp <= 0) //trigger game over
             {
