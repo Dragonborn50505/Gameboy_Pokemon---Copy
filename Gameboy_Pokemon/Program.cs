@@ -14,6 +14,7 @@ Random generator = new Random();
 string fight = "noDuring"; // Before, During, Between
 string setup = "noBeingDone";
 float speed = 6f;
+float specialBonus = 5;
 string turn = "player";
 int playerTimer = 0;
 int enemyTimer = 0;
@@ -22,6 +23,11 @@ string[] fightersOptions = { "triangle", "square", "circle" };
 int n = generator.Next(fightersOptions.Length);
 string fightersDecided = fightersOptions[n];
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
+
+string[] herosOptions = { "triangle", "square", "circle" };
+int h = generator.Next(fightersOptions.Length);
+string heroSynbol = herosOptions[h];
+Raylib.DrawText($"{heroSynbol}", 200, 500, 40, Color.LIGHTGRAY);
 
 
 //Generate figures 
@@ -237,7 +243,7 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
             playerRecAndDorrRec(playerRect, doorRect);
             Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
-            Raylib.DrawText($"{fightersDecided}", 50, 100, 40, Color.LIGHTGRAY);
+            
 
         }
 
@@ -472,6 +478,36 @@ static Vector2 ReadMovement(float speed) //movement
 
     return movement;
 }
+
+static  Vector3 damgeResults(float damage,string heroSynbol, string fightersDecided) 
+{
+    Vector3 specialBonus = new Vector3();
+    if (heroSynbol == "triangle" && fightersDecided =="cirle") damage =+ SpecialBonus;
+//    if (trinagle && circle)
+//    if (Rectangle && cirle)
+//    if (Rectangle && triangle)
+//    if (Circle && triangle)
+//    if (Circle && Rectangle)
+//    
+
+
+    return specialBonus;
+}
+
+
+//static  Vector3 damgeResults(float damage,string heroSynbol, string fightersDecided) 
+//{
+//    Vector3 AIspecialBonus = new Vector3();
+//    if (heroSynbol == "triangle" && fightersDecided =="cirle") damage =+ AIspecialBonus;
+//    if (trinagle && circle)
+//    if (Rectangle && cirle)
+//    if (Rectangle && triangle)
+//    if (Circle && triangle)
+//    if (Circle && Rectangle)
+//   
+
+//    return AIspecialBonus;
+//}
 
 
 //static void CheckMovement(){
