@@ -14,7 +14,7 @@ Random generator = new Random();
 string fight = "noDuring"; // Before, During, Between
 string setup = "noBeingDone";
 float speed = 6f;
-float specialBonus = 5;
+string game = "notStarted";
 string turn = "player";
 int playerTimer = 0;
 int enemyTimer = 0;
@@ -23,11 +23,8 @@ string[] fightersOptions = { "triangle", "square", "circle" };
 int n = generator.Next(fightersOptions.Length);
 string fightersDecided = fightersOptions[n];
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
+//float specialBonus = 5;
 
-string[] herosOptions = { "triangle", "square", "circle" };
-int h = generator.Next(fightersOptions.Length);
-string heroSynbol = herosOptions[h];
-Raylib.DrawText($"{heroSynbol}", 200, 500, 40, Color.LIGHTGRAY);
 
 
 //Generate figures 
@@ -48,7 +45,26 @@ Raylib.DrawText("Run Away", 400, 450, 40, Color.BLACK);
 
 
 
+//Text for menu 800, 600
+Raylib.DrawText("Wellcome", 10, 10, 40, Color.BLACK);
+Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
+Raylib.DrawText("champion to become the best syumbol trainer", 10, 90, 40, Color.BLACK);
+Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
 
+Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
+Raylib.DrawText("W: move upp", 10, 250, 40, Color.BLACK);
+Raylib.DrawText("D: move right", 10, 300, 40, Color.BLACK);
+Raylib.DrawText("A: move left", 10, 350, 40, Color.BLACK);
+Raylib.DrawText("S: move down", 10, 400, 40, Color.BLACK);
+Raylib.DrawText("M: Menu", 10, 450, 40, Color.BLACK);
+
+Raylib.DrawText("Chose your fighter", 300, 200, 40, Color.BLACK);
+Raylib.DrawText("Press 1 for Circle", 300, 250, 40, Color.BLACK);
+Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
+Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
+
+Raylib.DrawText("After picking fighter", 400, 200, 40, Color.BLACK);
+Raylib.DrawText("pess M to leave menu", 400, 250, 40, Color.BLACK);
 
 //-----------------Tester-----------------------------------------------------------------------------------------------------
 
@@ -88,6 +104,7 @@ float blackAndWhite = 0;
 
 
 string level = "start";
+string lastLevel = "";
 bool undoX = false;
 bool undoY = false;
 
@@ -122,7 +139,7 @@ while (!Raylib.WindowShouldClose()) //the game
 
     time += Raylib.GetFrameTime();
 
-    
+
     if (time > 60 && fightersHp < 100 && level != "bossfight" && fight != "during") // heal gighter if you in combat
     {
         fightersHp++;
@@ -226,8 +243,96 @@ while (!Raylib.WindowShouldClose()) //the game
     if (undoX == true) playerRect.x -= movement.X;
     if (undoY == true) playerRect.y -= movement.Y;
 
+
+
+    if (level != "bossfight" && level != "menu")
+    {
+        if (Raylib.IsKeyDown(KeyboardKey.KEY_M))
+        {
+            lastLevel = level;
+            level = "menu";
+        }
+    }
+    else if (level == "menu")
+    {
+        if (Raylib.IsKeyDown(KeyboardKey.KEY_M))
+        {
+            level = lastLevel;
+        }
+    }
+
+    string[] herosOptions = { "triangle", "rectangle", "circle" };
+    //int h = generator.Next(fightersOptions.Length);
+    string heroSynbol = herosOptions[h];
+    Raylib.DrawText($"{heroSynbol}", 200, 500, 40, Color.LIGHTGRAY);
+
+    if (level != "bossfight")
+    {
+        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_1))
+        {
+            int h = 0(fightersOptions.Length);
+        }
+        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_2))
+        {
+            int h = 1(fightersOptions.Length);
+        }
+        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_3))
+        {
+            int h = 2(fightersOptions.Length);
+        }
+    }
+
+
+    if (level == "menu")
+    {
+        if (heroSynbol == "triangle" || heroSynbol == "cirlce" || heroSynbol == "rectangle" && Raylib.IsKeyDown(KeyboardKey.KEY_M) && game != "started")
+        {
+            level = "start";
+            game = "started";
+        }
+
+        if (heroSynbol == "triangle" || heroSynbol == "cirlce" || heroSynbol == "rectangle" && Raylib.IsKeyDown(KeyboardKey.KEY_M) && game == "started")
+        {
+            level = "";
+
+        }
+
+    }
+
     Raylib.BeginDrawing(); //place all generated figures
     {
+
+        if (level == "menu")
+        {
+            Raylib.ClearBackground(Color.PINK);
+            Raylib.DrawText("Wellcome", 10, 10, 40, Color.BLACK);
+            Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
+            Raylib.DrawText("champion to become the best syumbol trainer", 10, 90, 40, Color.BLACK);
+            Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
+
+            Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
+            Raylib.DrawText("W: move upp", 10, 250, 40, Color.BLACK);
+            Raylib.DrawText("D: move right", 10, 300, 40, Color.BLACK);
+            Raylib.DrawText("A: move left", 10, 350, 40, Color.BLACK);
+            Raylib.DrawText("S: move down", 10, 400, 40, Color.BLACK);
+            Raylib.DrawText("M: Menu", 10, 450, 40, Color.BLACK);
+
+            Raylib.DrawText("Chose your fighter", 300, 200, 40, Color.BLACK);
+            Raylib.DrawText("Press 1 for Circle", 300, 250, 40, Color.BLACK);
+            Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
+            Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
+
+            Raylib.DrawText("After picking fighter", 400, 200, 40, Color.BLACK);
+            Raylib.DrawText("pess M to leave menu", 400, 250, 40, Color.BLACK);
+        }
+
+
+
+
+
+
+
+
 
         if (level == "start")
         {
@@ -235,7 +340,7 @@ while (!Raylib.WindowShouldClose()) //the game
             playerRecAndDorrRec(playerRect, doorRect);
             Raylib.DrawRectangleRec(bossRect, Color.PURPLE);
         }
-        
+
 
         else if (level == "outside")
         {
@@ -243,7 +348,7 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
             playerRecAndDorrRec(playerRect, doorRect);
             Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
-            
+
 
         }
 
@@ -271,18 +376,20 @@ while (!Raylib.WindowShouldClose()) //the game
         { //victory
             Raylib.ClearBackground(Color.BLUE);
             Raylib.DrawText("You Won!", 400, 280, 40, Color.BLACK);
+
         }
 
         else if (level == "game over")
         { //game over
             Raylib.ClearBackground(Color.RED);
             Raylib.DrawText("You lost", 400, 280, 40, Color.BLACK);
+            //why lost
         }
 
 
         if (blackAndWhite >= 120)
         {
-        setup = "beingDone";
+            setup = "beingDone";
         }
         if (setup == "beingDone" && fight == "noDuring")
         {
@@ -290,12 +397,13 @@ while (!Raylib.WindowShouldClose()) //the game
             setup = "noBeingDone";
 
         }
-        if (fight == "during"){
-             setup = "noBeingDone";
+        if (fight == "during")
+        {
+            setup = "noBeingDone";
         }
 
-        
-       
+
+
 
         if (level == "bossfight" && blackAndWhite >= 120 && setup == "noBeingDone") //bossfight after starting sequence
         {
@@ -335,6 +443,7 @@ while (!Raylib.WindowShouldClose()) //the game
                 else
                 {
                     int damage = 10 + generator.Next(0, 21);
+                    damage = damgeResults(damage, heroSynbol, fightersDecided);
                     hp_ai -= damage;
                     damage = 0;
                     enemyTimer = 120;
@@ -355,6 +464,7 @@ while (!Raylib.WindowShouldClose()) //the game
                 else
                 {
                     int damage = 20 + generator.Next(0, 26);
+                    damage = damgeResults(damage, heroSynbol, fightersDecided);
                     hp_ai -= damage;
                     damage = 0;
                     enemyTimer = 120;
@@ -389,6 +499,7 @@ while (!Raylib.WindowShouldClose()) //the game
                     else
                     {
                         int damage = 20 + generator.Next(0, 26);
+                        damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
                         fightersHp -= damage;
                         damage = 0;
                     }
@@ -408,6 +519,7 @@ while (!Raylib.WindowShouldClose()) //the game
                     else
                     {
                         int damage = 10 + generator.Next(0, 21);
+                        damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
                         fightersHp -= damage;
                         damage = 0;
                     }
@@ -426,11 +538,11 @@ while (!Raylib.WindowShouldClose()) //the game
                 fight = "noDuring";
                 level = "victory";
 
-                
+
             }
             if (fightersHp <= 0) //trigger game over
             {
-               fight = "noDuring";
+                fight = "noDuring";
                 level = "game over";
             }
 
@@ -452,7 +564,7 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.ClearBackground(Color.WHITE);
         }
         blackAndWhite++;
-       
+
     }
 
     if (potionHp == "active" && hp_ai <= 0)
@@ -479,35 +591,34 @@ static Vector2 ReadMovement(float speed) //movement
     return movement;
 }
 
-static  Vector3 damgeResults(float damage,string heroSynbol, string fightersDecided) 
+static int damgeResults(int damage, string heroSynbol, string fightersDecided)
 {
-    Vector3 specialBonus = new Vector3();
-    if (heroSynbol == "triangle" && fightersDecided =="cirle") damage =+ SpecialBonus;
-//    if (trinagle && circle)
-//    if (Rectangle && cirle)
-//    if (Rectangle && triangle)
-//    if (Circle && triangle)
-//    if (Circle && Rectangle)
-//    
 
+    int specialBonus = 5;
+    if (heroSynbol == "triangle" && fightersDecided == "cirle") damage += specialBonus;
+    if (heroSynbol == "triangle" && fightersDecided == "rectangle") damage += specialBonus;
+    if (heroSynbol == "rectangle" && fightersDecided == "cirle") damage += specialBonus;
+    if (heroSynbol == "rectangle" && fightersDecided == "triangle") damage += specialBonus;
+    if (heroSynbol == "circle" && fightersDecided == "triangle") damage += specialBonus;
+    if (heroSynbol == "circle" && fightersDecided == "rectangle") damage += specialBonus;
 
-    return specialBonus;
+    return damage;
 }
 
 
-//static  Vector3 damgeResults(float damage,string heroSynbol, string fightersDecided) 
-//{
-//    Vector3 AIspecialBonus = new Vector3();
-//    if (heroSynbol == "triangle" && fightersDecided =="cirle") damage =+ AIspecialBonus;
-//    if (trinagle && circle)
-//    if (Rectangle && cirle)
-//    if (Rectangle && triangle)
-//    if (Circle && triangle)
-//    if (Circle && Rectangle)
-//   
+static int AIdamgeResults(int damage, string heroSynbol, string fightersDecided)
+{
 
-//    return AIspecialBonus;
-//}
+    int AIspecialBonus = 5;
+    if (fightersDecided == "triangle" && heroSynbol == "cirle") damage += AIspecialBonus;
+    if (fightersDecided == "triangle" && heroSynbol == "rectangle") damage += AIspecialBonus;
+    if (fightersDecided == "rectangle" && heroSynbol == "cirle") damage += AIspecialBonus;
+    if (fightersDecided == "rectangle" && heroSynbol == "triangle") damage += AIspecialBonus;
+    if (fightersDecided == "circle" && heroSynbol == "triangle") damage += AIspecialBonus;
+    if (fightersDecided == "circle" && heroSynbol == "rectangle") damage += AIspecialBonus;
+
+    return damage;
+}
 
 
 //static void CheckMovement(){
