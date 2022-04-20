@@ -24,6 +24,7 @@ int n = generator.Next(fightersOptions.Length);
 string fightersDecided = fightersOptions[n];
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
 //float specialBonus = 5;
+int u = 0;
 
 
 
@@ -132,11 +133,10 @@ static void DrawShop(Rectangle p, Rectangle d, Rectangle s)
 
 Vector2 movement = new Vector2();
 
-while (!Raylib.WindowShouldClose()) //the game
+while (!Raylib.WindowShouldClose()) //the game              <#>  short as possible  <#>
 {
     undoX = false;
     undoY = false;
-
     time += Raylib.GetFrameTime();
 
 
@@ -151,85 +151,58 @@ while (!Raylib.WindowShouldClose()) //the game
 
     if (level == "start" || level == "shop") // borders for indors where size is the same & player movement
     {
-        // playerRect = CheckMovement();
-
-        movement = ReadMovement(speed);
-        playerRect.x += movement.X;
-        playerRect.y += movement.Y;
-
-        if (playerRect.x < 0 || playerRect.width > Raylib.GetScreenWidth())
-        { undoX = true; }
-        if (playerRect.y < 0 || playerRect.width > Raylib.GetScreenWidth())
-        { undoY = true; }
-        if (playerRect.x < 0 || playerRect.x + playerRect.width > Raylib.GetScreenWidth())
-        { undoX = true; }
-        if (playerRect.y < 100 || playerRect.y + playerRect.height > Raylib.GetScreenHeight())
-        { undoY = true; }
+        (undoX, undoY, playerRect, movement) = Movement.LimitMovement(
+                            0, // left
+                            Raylib.GetScreenWidth() - playerRect.width, // right
+                            100, // top
+                            Raylib.GetScreenHeight() - playerRect.height, // bottom
+                            playerRect, speed
+         );
     }
 
     else if (level == "outside") // borders for outside & player movement
     {
-
-        movement = ReadMovement(speed);
-        playerRect.x += movement.X;
-        playerRect.y += movement.Y;
-
-        if (playerRect.x < 0 || playerRect.width > Raylib.GetScreenWidth())
-        { undoX = true; }
-        if (playerRect.y > 400 || playerRect.width > Raylib.GetScreenWidth())
-        { undoY = true; }
-        if (playerRect.x < 280 || playerRect.x + playerRect.width > Raylib.GetScreenWidth())
-        { undoX = true; }
-        if (playerRect.y < 100 || playerRect.y + playerRect.height > Raylib.GetScreenHeight())
-        { undoY = true; }
+        (undoX, undoY, playerRect, movement) = Movement.LimitMovement(
+                            280,
+                            Raylib.GetScreenWidth() - playerRect.width,
+                            100, 400,
+                            playerRect, speed
+         );
 
     }
+
+
 
 
     if (Raylib.CheckCollisionRecs(playerRect, doorRect) && level == "start") //trigger for dorr to from start to outside
     {
-        level = "outside";
-        playerRect.x = 300;
-        playerRect.y = 140;
-        doorRect.x = 260;
-        doorRect.y = 70;
-
-        doorRect2.x = 500;
-        doorRect2.y = 70;
+ 
+        (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
+        (level, playerRect, doorRect, doorRect2);
 
     }
+
+
 
     else if (Raylib.CheckCollisionRecs(playerRect, doorRect) && level == "outside") //dorr from outside to start
     {
-        level = "start";
-        playerRect.x = 300;
-        playerRect.y = 500;
-        doorRect.x = 260;
-        doorRect.y = 560;
-        bossRect.x = 700;
-        bossRect.y = 70;
+        (playerRect, doorRect, bossRect, level) = Drawing.startPlacement
+        (level, playerRect, doorRect, bossRect);
     }
+
+
 
     else if (Raylib.CheckCollisionRecs(playerRect, doorRect2) && level == "outside") //dorr to shop
     {
-        level = "shop";
-        playerRect.x = 500;
-        playerRect.y = 500;
-        doorRect2.x = 500;
-        doorRect2.y = 560;
+        (playerRect, doorRect2, level) = Drawing.shopPlacement(level, playerRect, doorRect2);
     }
+
+
 
     if (Raylib.CheckCollisionRecs(playerRect, doorRect2) && level == "shop") //dorr from shop outside
     {
-        level = "outside";
-        playerRect.x = 500;
-        playerRect.y = 140;
-        doorRect.x = 260;
-        doorRect.y = 70;
-
-        doorRect2.x = 500;
-        doorRect2.y = 70;
-
+        (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
+        (level, playerRect, doorRect, doorRect2);
     }
 
     if (Raylib.CheckCollisionRecs(playerRect, bossRect) && level == "start") //trigger bossfight
@@ -247,7 +220,7 @@ while (!Raylib.WindowShouldClose()) //the game
 
     if (level != "bossfight" && level != "menu")
     {
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_M))
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_M))
         {
             lastLevel = level;
             level = "menu";
@@ -255,32 +228,34 @@ while (!Raylib.WindowShouldClose()) //the game
     }
     else if (level == "menu")
     {
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_M))
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_M))
         {
             level = lastLevel;
         }
     }
 
-    string[] herosOptions = { "triangle", "rectangle", "circle" };
-    //int h = generator.Next(fightersOptions.Length);
-    string heroSynbol = herosOptions[h];
-    Raylib.DrawText($"{heroSynbol}", 200, 500, 40, Color.LIGHTGRAY);
 
-    if (level != "bossfight")
+    string[] herosOptions = { "triangle", "rectangle", "circle" };
+    // int h = generator.Next(herosOptions.Length);
+
+
+    if (level == "menu" && fight != "during" && setup != "beingDone")
     {
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_1))
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_ONE))
         {
-            int h = 0(fightersOptions.Length);
+            u = 0;
         }
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_2))
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_TWO))
         {
-            int h = 1(fightersOptions.Length);
+            u = 1;
         }
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_KP_3))
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_THREE))
         {
-            int h = 2(fightersOptions.Length);
+            u = 2;
         }
     }
+
+    string heroSynbol = herosOptions[u];
 
 
     if (level == "menu")
@@ -293,7 +268,7 @@ while (!Raylib.WindowShouldClose()) //the game
 
         if (heroSynbol == "triangle" || heroSynbol == "cirlce" || heroSynbol == "rectangle" && Raylib.IsKeyDown(KeyboardKey.KEY_M) && game == "started")
         {
-            level = "";
+            level = "menu";
 
         }
 
@@ -322,8 +297,11 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
             Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
 
-            Raylib.DrawText("After picking fighter", 400, 200, 40, Color.BLACK);
-            Raylib.DrawText("pess M to leave menu", 400, 250, 40, Color.BLACK);
+            Raylib.DrawText("After picking fighter", 300, 450, 40, Color.BLACK);
+            Raylib.DrawText("pess M to leave menu", 300, 500, 40, Color.BLACK);
+
+            Raylib.DrawText("Fighter:", 10, 550, 40, Color.LIGHTGRAY);
+            Raylib.DrawText($"{heroSynbol}", 200, 550, 40, Color.LIGHTGRAY);
         }
 
 
@@ -405,6 +383,7 @@ while (!Raylib.WindowShouldClose()) //the game
 
 
 
+
         if (level == "bossfight" && blackAndWhite >= 120 && setup == "noBeingDone") //bossfight after starting sequence
         {
             fight = "during";
@@ -420,6 +399,19 @@ while (!Raylib.WindowShouldClose()) //the game
             Raylib.DrawText($"{fightersHp}", 650, 500, 40, Color.LIGHTGRAY);
             Raylib.DrawRectangleRec(lineHorisontelBossFight, Color.BLACK);
             Raylib.DrawRectangleRec(lineVerticalBossFight, Color.BLACK);
+
+
+(fight, fightersDecided, hp_ai, fightersHp, 
+DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight) 
+= Drawing.fightPlacement
+(fight, hp_ai, fightersDecided, 
+fightersHp, DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight);
+
+
+
+
+ (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
+       (level, playerRect, doorRect, doorRect2);
 
 
             //lol
@@ -443,7 +435,7 @@ while (!Raylib.WindowShouldClose()) //the game
                 else
                 {
                     int damage = 10 + generator.Next(0, 21);
-                    damage = damgeResults(damage, heroSynbol, fightersDecided);
+                    damage = DamgeResults(damage, heroSynbol, fightersDecided);
                     hp_ai -= damage;
                     damage = 0;
                     enemyTimer = 120;
@@ -464,7 +456,7 @@ while (!Raylib.WindowShouldClose()) //the game
                 else
                 {
                     int damage = 20 + generator.Next(0, 26);
-                    damage = damgeResults(damage, heroSynbol, fightersDecided);
+                    damage = DamgeResults(damage, heroSynbol, fightersDecided);
                     hp_ai -= damage;
                     damage = 0;
                     enemyTimer = 120;
@@ -580,27 +572,18 @@ while (!Raylib.WindowShouldClose()) //the game
 }
 
 
-static Vector2 ReadMovement(float speed) //movement
-{
-    Vector2 movement = new Vector2();
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) movement.Y = -speed;
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) movement.Y = speed;
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_A)) movement.X = -speed;
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_D)) movement.X = speed;
 
-    return movement;
-}
 
-static int damgeResults(int damage, string heroSynbol, string fightersDecided)
+static int DamgeResults(int damage, string heroSynbol, string fightersDecided)
 {
 
     int specialBonus = 5;
-    if (heroSynbol == "triangle" && fightersDecided == "cirle") damage += specialBonus;
+    if (heroSynbol == "triangle" && fightersDecided == "cirle") damage -= specialBonus;
     if (heroSynbol == "triangle" && fightersDecided == "rectangle") damage += specialBonus;
     if (heroSynbol == "rectangle" && fightersDecided == "cirle") damage += specialBonus;
-    if (heroSynbol == "rectangle" && fightersDecided == "triangle") damage += specialBonus;
+    if (heroSynbol == "rectangle" && fightersDecided == "triangle") damage -= specialBonus;
     if (heroSynbol == "circle" && fightersDecided == "triangle") damage += specialBonus;
-    if (heroSynbol == "circle" && fightersDecided == "rectangle") damage += specialBonus;
+    if (heroSynbol == "circle" && fightersDecided == "rectangle") damage -= specialBonus;
 
     return damage;
 }
@@ -610,15 +593,19 @@ static int AIdamgeResults(int damage, string heroSynbol, string fightersDecided)
 {
 
     int AIspecialBonus = 5;
-    if (fightersDecided == "triangle" && heroSynbol == "cirle") damage += AIspecialBonus;
+    if (fightersDecided == "triangle" && heroSynbol == "cirle") damage -= AIspecialBonus;
     if (fightersDecided == "triangle" && heroSynbol == "rectangle") damage += AIspecialBonus;
     if (fightersDecided == "rectangle" && heroSynbol == "cirle") damage += AIspecialBonus;
-    if (fightersDecided == "rectangle" && heroSynbol == "triangle") damage += AIspecialBonus;
+    if (fightersDecided == "rectangle" && heroSynbol == "triangle") damage -= AIspecialBonus;
     if (fightersDecided == "circle" && heroSynbol == "triangle") damage += AIspecialBonus;
-    if (fightersDecided == "circle" && heroSynbol == "rectangle") damage += AIspecialBonus;
+    if (fightersDecided == "circle" && heroSynbol == "rectangle") damage -= AIspecialBonus;
 
     return damage;
 }
+
+
+
+
 
 
 //static void CheckMovement(){
