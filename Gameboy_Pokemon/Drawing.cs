@@ -69,9 +69,8 @@ public class Drawing
 
 
 
-public static (string, string, int, int, Rectangle, Rectangle,  Vector2) fightPlacement(
-    string fight, int hp_ai, string fightersDecided, int fightersHp, 
-    Rectangle DrawRectangleRec, Rectangle lineHorisontelBossFight,
+public static (string, Vector2, string, int, int, Rectangle, Rectangle) fightPlacement(
+    string fight, int hp_ai, string fightersDecided, int fightersHp, Rectangle lineHorisontelBossFight,
     Rectangle lineVerticalBossFight
                 )
     {
@@ -90,11 +89,38 @@ public static (string, string, int, int, Rectangle, Rectangle,  Vector2) fightPl
             Raylib.DrawRectangleRec(lineHorisontelBossFight, Color.BLACK);
             Raylib.DrawRectangleRec(lineVerticalBossFight, Color.BLACK);
 
-        return (fight, fightersDecided, hp_ai, fightersHp, 
-        DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight);
+        return (fight, mousePos, fightersDecided, hp_ai, fightersHp, lineHorisontelBossFight, lineVerticalBossFight);
     }
 
+public static (string, string) menuPlacement(string wellcomeTest, string heroSynbol)
+    {
 
+        Raylib.ClearBackground(Color.PINK);
+            Raylib.DrawText($"{wellcomeTest}", 10, 10, 40, Color.BLACK);
+            Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
+            Raylib.DrawText("champion to become the best syumbol trainer", 10, 90, 40, Color.BLACK);
+            Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
+
+            Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
+            Raylib.DrawText("W: move upp", 10, 250, 40, Color.BLACK);
+            Raylib.DrawText("D: move right", 10, 300, 40, Color.BLACK);
+            Raylib.DrawText("A: move left", 10, 350, 40, Color.BLACK);
+            Raylib.DrawText("S: move down", 10, 400, 40, Color.BLACK);
+            Raylib.DrawText("M: Menu", 10, 450, 40, Color.BLACK);
+
+            Raylib.DrawText("Chose your fighter", 300, 200, 40, Color.BLACK);
+            Raylib.DrawText("Press 1 for Circle", 300, 250, 40, Color.BLACK);
+            Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
+            Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
+
+            Raylib.DrawText("After picking fighter", 300, 450, 40, Color.BLACK);
+            Raylib.DrawText("pess M to leave menu", 300, 500, 40, Color.BLACK);
+
+            Raylib.DrawText("Fighter:", 10, 550, 40, Color.LIGHTGRAY);
+            Raylib.DrawText($"{heroSynbol}", 200, 550, 40, Color.LIGHTGRAY);
+
+        return (wellcomeTest, heroSynbol);
+    }
 
 
 

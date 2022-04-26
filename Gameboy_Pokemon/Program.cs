@@ -25,6 +25,7 @@ string fightersDecided = fightersOptions[n];
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
 //float specialBonus = 5;
 int u = 0;
+string wellcomeTest= "Wellcome";
 
 
 
@@ -176,7 +177,7 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
     if (Raylib.CheckCollisionRecs(playerRect, doorRect) && level == "start") //trigger for dorr to from start to outside
     {
- 
+
         (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
         (level, playerRect, doorRect, doorRect2);
 
@@ -279,31 +280,8 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
         if (level == "menu")
         {
-            Raylib.ClearBackground(Color.PINK);
-            Raylib.DrawText("Wellcome", 10, 10, 40, Color.BLACK);
-            Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
-            Raylib.DrawText("champion to become the best syumbol trainer", 10, 90, 40, Color.BLACK);
-            Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
-
-            Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
-            Raylib.DrawText("W: move upp", 10, 250, 40, Color.BLACK);
-            Raylib.DrawText("D: move right", 10, 300, 40, Color.BLACK);
-            Raylib.DrawText("A: move left", 10, 350, 40, Color.BLACK);
-            Raylib.DrawText("S: move down", 10, 400, 40, Color.BLACK);
-            Raylib.DrawText("M: Menu", 10, 450, 40, Color.BLACK);
-
-            Raylib.DrawText("Chose your fighter", 300, 200, 40, Color.BLACK);
-            Raylib.DrawText("Press 1 for Circle", 300, 250, 40, Color.BLACK);
-            Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
-            Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
-
-            Raylib.DrawText("After picking fighter", 300, 450, 40, Color.BLACK);
-            Raylib.DrawText("pess M to leave menu", 300, 500, 40, Color.BLACK);
-
-            Raylib.DrawText("Fighter:", 10, 550, 40, Color.LIGHTGRAY);
-            Raylib.DrawText($"{heroSynbol}", 200, 550, 40, Color.LIGHTGRAY);
+        (wellcomeTest, heroSynbol) = Drawing.menuPlacement(wellcomeTest, heroSynbol);
         }
-
 
 
 
@@ -386,32 +364,18 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
         if (level == "bossfight" && blackAndWhite >= 120 && setup == "noBeingDone") //bossfight after starting sequence
         {
-            fight = "during";
-            Vector2 mousePos = Raylib.GetMousePosition(); // give mouse a position
-            Raylib.ClearBackground(Color.YELLOW); //drawing out all figures
-            Raylib.DrawText($"{fightersDecided}", 50, 50, 40, Color.LIGHTGRAY);
-            Raylib.DrawText($"{hp_ai}", 50, 100, 40, Color.LIGHTGRAY);
-            Raylib.DrawText("name", 650, 450, 40, Color.LIGHTGRAY);
-            Raylib.DrawText("Attack:", 50, 450, 40, Color.BLACK);
-            Raylib.DrawText("Use headbutt", 50, 500, 40, Color.LIGHTGRAY);
-            Raylib.DrawText("Use Kick", 50, 550, 40, Color.LIGHTGRAY);
-            Raylib.DrawText("Run Away", 400, 450, 40, Color.BLACK);
-            Raylib.DrawText($"{fightersHp}", 650, 500, 40, Color.LIGHTGRAY);
-            Raylib.DrawRectangleRec(lineHorisontelBossFight, Color.BLACK);
-            Raylib.DrawRectangleRec(lineVerticalBossFight, Color.BLACK);
 
+            //(playerRect, doorRect2, level) = Drawing.shopPlacement(level, playerRect, doorRect2);
+            Vector2 mousePos;
 
-(fight, fightersDecided, hp_ai, fightersHp, 
-DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight) 
-= Drawing.fightPlacement
-(fight, hp_ai, fightersDecided, 
-fightersHp, DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight);
+            (fight, mousePos, fightersDecided, hp_ai, fightersHp, lineHorisontelBossFight, lineVerticalBossFight)
+            = Drawing.fightPlacement
+            (fight, hp_ai, fightersDecided,
+            fightersHp, lineHorisontelBossFight, lineVerticalBossFight);
 
 
 
 
- (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
-       (level, playerRect, doorRect, doorRect2);
 
 
             //lol
@@ -421,104 +385,24 @@ fightersHp, DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight);
             Raylib.DrawRectangleRec(bossFighter, Color.RED); //player´s and the bosses fighers
             Raylib.DrawRectangleRec(fighter, Color.BLUE);
 
+        if (turn == "player"){
+            (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai, 
+            kick, runAway, playerRect, doorRect, bossRect, level) = Fight.FightTurn
+        (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai, 
+            kick, runAway, playerRect, doorRect, bossRect, level);
 
-            if (Raylib.CheckCollisionPointRec(mousePos, headbutt) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) && turn == "player" && playerTimer == 0)
-            {//player fight generator
-
-                int HitOrMissName = generator.Next(1, 11);
-
-                if (HitOrMissName == 1)
-                {
-                    enemyTimer = 120;
-                    turn = "enemy";
-                }
-                else
-                {
-                    int damage = 10 + generator.Next(0, 21);
-                    damage = DamgeResults(damage, heroSynbol, fightersDecided);
-                    hp_ai -= damage;
-                    damage = 0;
-                    enemyTimer = 120;
-                    turn = "enemy";
-                }
-
-            }
-
-            if (Raylib.CheckCollisionPointRec(mousePos, kick) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-            {
-                int KickOrMissName = generator.Next(1, 5);
-
-                if (KickOrMissName == 1)
-                {
-                    enemyTimer = 120;
-                    turn = "enemy";
-                }
-                else
-                {
-                    int damage = 20 + generator.Next(0, 26);
-                    damage = DamgeResults(damage, heroSynbol, fightersDecided);
-                    hp_ai -= damage;
-                    damage = 0;
-                    enemyTimer = 120;
-                    turn = "enemy";
-                }
-            }
-            if (Raylib.CheckCollisionPointRec(mousePos, runAway) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-            {
-                level = "start";
-                playerRect.x = 300;
-                playerRect.y = 500;
-                doorRect.x = 260;
-                doorRect.y = 560;
-                bossRect.x = 700;
-                bossRect.y = 70;
-            }
+        } // stop 
 
             while (turn == "enemy" && enemyTimer == 0)
             {
-                //fights back'
 
-                int ai_choice = generator.Next(1, 6);
 
-                if (ai_choice == 1)
-                {
-                    int KickOrMissAI = generator.Next(1, 12);
+                (generator, heroSynbol, fightersDecided, 
+                fightersHp, playerTimer, turn) = Fight.AiFightTurn
+                (generator, heroSynbol, fightersDecided, 
+                fightersHp, playerTimer, turn);
+                
 
-                    if (KickOrMissAI == 1)
-                    {
-
-                    }
-                    else
-                    {
-                        int damage = 20 + generator.Next(0, 26);
-                        damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
-                        fightersHp -= damage;
-                        damage = 0;
-                    }
-                }
-
-                //________________________________________________________________________________
-
-                else
-                {
-                    int HitOrMissAI = generator.Next(1, 21);
-
-                    if (HitOrMissAI == 1)
-                    {
-
-                    }
-
-                    else
-                    {
-                        int damage = 10 + generator.Next(0, 21);
-                        damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
-                        fightersHp -= damage;
-                        damage = 0;
-                    }
-                }
-
-                playerTimer = 120;
-                turn = "player";
             }
 
             if (playerTimer > 0) playerTimer--;
@@ -574,34 +458,9 @@ fightersHp, DrawRectangleRec, lineHorisontelBossFight, lineVerticalBossFight);
 
 
 
-static int DamgeResults(int damage, string heroSynbol, string fightersDecided)
-{
-
-    int specialBonus = 5;
-    if (heroSynbol == "triangle" && fightersDecided == "cirle") damage -= specialBonus;
-    if (heroSynbol == "triangle" && fightersDecided == "rectangle") damage += specialBonus;
-    if (heroSynbol == "rectangle" && fightersDecided == "cirle") damage += specialBonus;
-    if (heroSynbol == "rectangle" && fightersDecided == "triangle") damage -= specialBonus;
-    if (heroSynbol == "circle" && fightersDecided == "triangle") damage += specialBonus;
-    if (heroSynbol == "circle" && fightersDecided == "rectangle") damage -= specialBonus;
-
-    return damage;
-}
 
 
-static int AIdamgeResults(int damage, string heroSynbol, string fightersDecided)
-{
 
-    int AIspecialBonus = 5;
-    if (fightersDecided == "triangle" && heroSynbol == "cirle") damage -= AIspecialBonus;
-    if (fightersDecided == "triangle" && heroSynbol == "rectangle") damage += AIspecialBonus;
-    if (fightersDecided == "rectangle" && heroSynbol == "cirle") damage += AIspecialBonus;
-    if (fightersDecided == "rectangle" && heroSynbol == "triangle") damage -= AIspecialBonus;
-    if (fightersDecided == "circle" && heroSynbol == "triangle") damage += AIspecialBonus;
-    if (fightersDecided == "circle" && heroSynbol == "rectangle") damage -= AIspecialBonus;
-
-    return damage;
-}
 
 
 
