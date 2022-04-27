@@ -19,13 +19,16 @@ string turn = "player";
 int playerTimer = 0;
 int enemyTimer = 0;
 string potionHp = "inactive";
-string[] fightersOptions = { "triangle", "square", "circle" };
-int n = generator.Next(fightersOptions.Length);
-string fightersDecided = fightersOptions[n];
+
+
+string[] fightersOptions = { "triangle", "square", "circle" }; //dena lista andvänds för att veta 
+int n = generator.Next(fightersOptions.Length);                //vilken form fienden ska ha och mot
+string fightersDecided = fightersOptions[n];                   //Vem den har bonus mot
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
+
 //float specialBonus = 5;
 int u = 0;
-string wellcomeTest= "Wellcome";
+string wellcomeTest = "Wellcome";
 
 
 
@@ -70,11 +73,6 @@ Raylib.DrawText("pess M to leave menu", 400, 250, 40, Color.BLACK);
 
 //-----------------Tester-----------------------------------------------------------------------------------------------------
 
-static void playerRecAndDorrRec(Rectangle q, Rectangle w)
-{
-    Raylib.DrawRectangleRec(q, Color.BROWN);
-    Raylib.DrawRectangleRec(w, Color.BLACK);
-}
 
 
 //-----------------Tester-----------------------------------------------------------------------------------------------------
@@ -146,6 +144,7 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
         fightersHp++;
         time = 0;
     }
+
 
 
 
@@ -280,7 +279,7 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
         if (level == "menu")
         {
-        (wellcomeTest, heroSynbol) = Drawing.menuPlacement(wellcomeTest, heroSynbol);
+            (wellcomeTest, heroSynbol) = Drawing.menuPlacement(wellcomeTest, heroSynbol);
         }
 
 
@@ -292,18 +291,13 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
         if (level == "start")
         {
-            Raylib.ClearBackground(Color.BLUE);
-            playerRecAndDorrRec(playerRect, doorRect);
-            Raylib.DrawRectangleRec(bossRect, Color.PURPLE);
+            (playerRect, doorRect, bossRect) = Drawing.startDrawing(playerRect, doorRect, bossRect);
         }
 
 
         else if (level == "outside")
         {
-            Raylib.ClearBackground(Color.PINK);
-            Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
-            playerRecAndDorrRec(playerRect, doorRect);
-            Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
+            (playerRect, doorRect, doorRect2) = Drawing.outsideDrawing(winterBackground, playerRect, doorRect, doorRect2);
 
 
         }
@@ -385,23 +379,24 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
             Raylib.DrawRectangleRec(bossFighter, Color.RED); //player´s and the bosses fighers
             Raylib.DrawRectangleRec(fighter, Color.BLUE);
 
-        if (turn == "player"){
-            (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai, 
-            kick, runAway, playerRect, doorRect, bossRect, level) = Fight.FightTurn
-        (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai, 
-            kick, runAway, playerRect, doorRect, bossRect, level);
+            if (turn == "player")
+            {
+                (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai,
+                kick, runAway, playerRect, doorRect, bossRect, level) = Fight.FightTurn
+            (mousePos, headbutt, playerTimer, generator, enemyTimer, turn, heroSynbol, fightersDecided, hp_ai,
+                kick, runAway, playerRect, doorRect, bossRect, level);
 
-        } // stop 
+            } // stop 
 
             while (turn == "enemy" && enemyTimer == 0)
             {
 
 
-                (generator, heroSynbol, fightersDecided, 
+                (generator, heroSynbol, fightersDecided,
                 fightersHp, playerTimer, turn) = Fight.AiFightTurn
-                (generator, heroSynbol, fightersDecided, 
+                (generator, heroSynbol, fightersDecided,
                 fightersHp, playerTimer, turn);
-                
+
 
             }
 
@@ -427,7 +422,6 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
 
 
-
     }
     if (level == "bossfight" && blackAndWhite < 120) //My favorite part of the code, beteween being a even and uneven number it changes back and fourth from black to white to stimulate playing pokemone on gameboye
     {
@@ -441,7 +435,13 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
         }
         blackAndWhite++;
 
+
     }
+
+
+
+
+
 
     if (potionHp == "active" && hp_ai <= 0)
     { //Was planed to give the player a health boost if you bought it but were not able to make it work in time
@@ -451,6 +451,19 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
         hp--;
 
     }
+
+    if (time < 60)
+    {
+        for (int extraFighterHp = 100; extraFighterHp < 100; extraFighterHp++)
+        {
+            time = 0;
+        }
+    }
+
+
+
+
+
 
     Raylib.EndDrawing();
 }

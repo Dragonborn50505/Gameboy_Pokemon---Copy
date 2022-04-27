@@ -59,7 +59,7 @@ public class Fight
         return (generator, heroSynbol, fightersDecided,
         fightersHp, playerTimer, turn);
     }
-
+        
     static int AIdamgeResults(int damage, string heroSynbol, string fightersDecided)
     {
 
@@ -151,15 +151,6 @@ static int DamgeResults(int damage, string heroSynbol, string fightersDecided)
 
     return damage;
 }
-
-
-
-
-
-
-
-
-
 
 
 
