@@ -38,7 +38,7 @@ public class Fight
 
         else
         {
-            int HitOrMissAI = generator.Next(1, 21);
+            int HitOrMissAI = generator.Next(1, 11);
 
             if (HitOrMissAI == 1)
             {
