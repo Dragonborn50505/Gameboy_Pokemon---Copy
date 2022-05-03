@@ -403,20 +403,9 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
             if (playerTimer > 0) playerTimer--;
             if (enemyTimer > 0) enemyTimer--;
 
-
-            if (hp_ai <= 0) //trigger victory if fight happend
-            {
-                fight = "noDuring";
-                level = "victory";
-
-
+            if (hp_ai <= 0 || fightersHp <= 0){
+            (hp_ai, fight, level, fightersHp) = Drawing.winLose(hp_ai, fight, level, fightersHp);
             }
-            if (fightersHp <= 0) //trigger game over
-            {
-                fight = "noDuring";
-                level = "game over";
-            }
-
 
         }
 

@@ -162,9 +162,21 @@ public class Drawing
 
 
 
+public static (int, string, string, int) winLose(int hp_ai, string fight, string level, int fightersHp)
+    {
+        if (hp_ai <= 0) //trigger victory if fight happend
+            {
+                fight = "noDuring";
+                level = "win";
 
-
-
+            }
+            if (fightersHp <= 0) //trigger game over
+            {
+                fight = "noDuring";
+                level = "game over";
+            }
+            return (hp_ai, fight, level, fightersHp);
+    }
 
 
 
