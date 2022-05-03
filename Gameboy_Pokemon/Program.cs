@@ -321,21 +321,9 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
             potionHp = "active"; //Item to buy
             level = "shop";
         }
-
-        else if (level == "victory")
-        { //victory
-            Raylib.ClearBackground(Color.BLUE);
-            Raylib.DrawText("You Won!", 400, 280, 40, Color.BLACK);
-
+        if (level == "victory" || level == "game over"){
+        (level, heroSynbol, fightersDecided)= Drawing.DrawWinLose(level, heroSynbol, fightersDecided);
         }
-
-        else if (level == "game over")
-        { //game over
-            Raylib.ClearBackground(Color.RED);
-            Raylib.DrawText("You lost", 400, 280, 40, Color.BLACK);
-            //why lost
-        }
-
 
         if (blackAndWhite >= 120)
         {

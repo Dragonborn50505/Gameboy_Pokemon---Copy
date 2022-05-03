@@ -182,4 +182,42 @@ public static (int, string, string, int) winLose(int hp_ai, string fight, string
 
 
 
+
+
+
+public static (string, string, string) DrawWinLose(string level, string heroSynbol, string fightersDecided)
+    {
+        if (level == "victory")
+        { //victory
+            Raylib.ClearBackground(Color.BLUE);
+            Raylib.DrawText("You Won!", 400, 280, 40, Color.BLACK);
+
+        }
+
+        else if (level == "game over")
+        { //game over
+            Raylib.ClearBackground(Color.RED);
+            Raylib.DrawText("You lost", 400, 280, 40, Color.BLACK);
+            //why lost
+            if (heroSynbol == "triangle" && fightersDecided == "cirle") {
+                Raylib.DrawText("You may have lost becuse cirle hade is stronger against triangle", 400, 350, 40, Color.BLACK);
+            }
+            if (heroSynbol == "rectangle" && fightersDecided == "triangle") {
+                Raylib.DrawText("You may have lost becuse triangle hade is stronger against rectangle", 400, 350, 40, Color.BLACK);
+            }
+            if (heroSynbol == "circle" && fightersDecided == "rectangle") {
+                Raylib.DrawText("You may have lost becuse rectangle hade is stronger against circle", 400, 350, 40, Color.BLACK);
+            }
+
+          
+
+
+        }
+            return (level, heroSynbol, fightersDecided);
+    }
+
+
+
+
+
 }
