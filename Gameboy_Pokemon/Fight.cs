@@ -19,11 +19,12 @@ public class Fight
 
         if (aiChoice == 1)
         {
-            int KickOrMissAI = generator.Next(1, 12);
+            int KickOrMissAI = generator.Next(1, 5);
 
             if (KickOrMissAI == 1)
             {
-
+                playerTimer = 120;
+                turn = "player";
             }
             else
             {
@@ -31,6 +32,8 @@ public class Fight
                 damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
                 fightersHp -= damage;
                 damage = 0;
+                playerTimer = 120;
+                turn = "player";
             }
         }
 
@@ -42,7 +45,8 @@ public class Fight
 
             if (HitOrMissAI == 1)
             {
-
+                playerTimer = 120;
+                turn = "player";
             }
 
             else
@@ -51,10 +55,11 @@ public class Fight
                 damage = AIdamgeResults(damage, heroSynbol, fightersDecided);
                 fightersHp -= damage;
                 damage = 0;
+                playerTimer = 120;
+                turn = "player";
             }
         }
-        playerTimer = 120;
-        turn = "player";
+        
 
         return (generator, heroSynbol, fightersDecided,
         fightersHp, playerTimer, turn);
@@ -124,6 +129,7 @@ public class Fight
                 enemyTimer = 120;
                 turn = "enemy";
             }
+                
         }
         if (Raylib.CheckCollisionPointRec(mousePos, runAway) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
         {

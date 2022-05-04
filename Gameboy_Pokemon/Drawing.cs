@@ -13,7 +13,30 @@ public class Drawing
         level = "outside";
         playerRect.x = 300;
         playerRect.y = 140;
-        doorRect.x = 260;
+        doorRect.x = 300;
+        doorRect.y = 70;
+
+        doorRect2.x = 500;
+        doorRect2.y = 70;
+
+        return (playerRect, doorRect, doorRect2, level);
+    }
+
+
+
+
+
+
+    public static (Rectangle, Rectangle, Rectangle, string) outside2Placement(string level,
+                Rectangle playerRect,
+                Rectangle doorRect,
+                Rectangle doorRect2)
+    {
+
+        level = "outside";
+        playerRect.x = 500;
+        playerRect.y = 140;
+        doorRect.x = 300;
         doorRect.y = 70;
 
         doorRect2.x = 500;
@@ -38,7 +61,7 @@ public class Drawing
         level = "start";
         playerRect.x = 300;
         playerRect.y = 500;
-        doorRect.x = 260;
+        doorRect.x = 300;
         doorRect.y = 560;
         bossRect.x = 700;
         bossRect.y = 70;
@@ -61,7 +84,6 @@ public class Drawing
     public static (Rectangle, Rectangle, Rectangle) outsideDrawing(Texture2D winterBackground, Rectangle playerRect, Rectangle doorRect, Rectangle doorRect2)
     {
         Raylib.ClearBackground(Color.PINK);
-        Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
         playerRecAndDorrRec(playerRect, doorRect);
         Raylib.DrawRectangleRec(doorRect2, Color.BLACK);
         return (playerRect, doorRect, doorRect2);
@@ -162,20 +184,20 @@ public class Drawing
 
 
 
-public static (int, string, string, int) winLose(int hp_ai, string fight, string level, int fightersHp)
+    public static (int, string, string, int) winLose(int hp_ai, string fight, string level, int fightersHp)
     {
         if (hp_ai <= 0) //trigger victory if fight happend
-            {
-                fight = "noDuring";
-                level = "win";
+        {
+            fight = "noDuring";
+            level = "victory";
 
-            }
-            if (fightersHp <= 0) //trigger game over
-            {
-                fight = "noDuring";
-                level = "game over";
-            }
-            return (hp_ai, fight, level, fightersHp);
+        }
+        if (fightersHp <= 0) //trigger game over
+        {
+            fight = "noDuring";
+            level = "game over";
+        }
+        return (hp_ai, fight, level, fightersHp);
     }
 
 
@@ -185,7 +207,7 @@ public static (int, string, string, int) winLose(int hp_ai, string fight, string
 
 
 
-public static (string, string, string) DrawWinLose(string level, string heroSynbol, string fightersDecided)
+    public static (string, string, string) DrawWinLose(string level, string heroSynbol, string fightersDecided)
     {
         if (level == "victory")
         { //victory
@@ -199,21 +221,24 @@ public static (string, string, string) DrawWinLose(string level, string heroSynb
             Raylib.ClearBackground(Color.RED);
             Raylib.DrawText("You lost", 400, 280, 40, Color.BLACK);
             //why lost
-            if (heroSynbol == "triangle" && fightersDecided == "cirle") {
-                Raylib.DrawText("You may have lost becuse cirle hade is stronger against triangle", 400, 350, 40, Color.BLACK);
+            if (heroSynbol == "triangle" && fightersDecided == "cirle")
+            {
+                Raylib.DrawText("You may have lost becuse cirle is stronger against triangle", 200, 350, 40, Color.BLACK);
             }
-            if (heroSynbol == "rectangle" && fightersDecided == "triangle") {
-                Raylib.DrawText("You may have lost becuse triangle hade is stronger against rectangle", 400, 350, 40, Color.BLACK);
+            if (heroSynbol == "rectangle" && fightersDecided == "triangle")
+            {
+                Raylib.DrawText("You may have lost becuse triangle is stronger against rectangle", 200, 350, 40, Color.BLACK);
             }
-            if (heroSynbol == "circle" && fightersDecided == "rectangle") {
-                Raylib.DrawText("You may have lost becuse rectangle hade is stronger against circle", 400, 350, 40, Color.BLACK);
+            if (heroSynbol == "circle" && fightersDecided == "rectangle")
+            {
+                Raylib.DrawText("You may have lost becuse rectangle is stronger against circle", 200, 350, 40, Color.BLACK);
             }
 
-          
+
 
 
         }
-            return (level, heroSynbol, fightersDecided);
+        return (level, heroSynbol, fightersDecided);
     }
 
 

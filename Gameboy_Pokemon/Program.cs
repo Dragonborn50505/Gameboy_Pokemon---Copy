@@ -201,7 +201,7 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
     if (Raylib.CheckCollisionRecs(playerRect, doorRect2) && level == "shop") //dorr from shop outside
     {
-        (playerRect, doorRect, doorRect2, level) = Drawing.outsidePlacement
+        (playerRect, doorRect, doorRect2, level) = Drawing.outside2Placement
         (level, playerRect, doorRect, doorRect2);
     }
 
@@ -297,8 +297,8 @@ while (!Raylib.WindowShouldClose()) //the game              <#>  short as possib
 
         else if (level == "outside")
         {
+            Raylib.DrawTexture(winterBackground, 0, 0, Color.WHITE);
             (playerRect, doorRect, doorRect2) = Drawing.outsideDrawing(winterBackground, playerRect, doorRect, doorRect2);
-
 
         }
 
