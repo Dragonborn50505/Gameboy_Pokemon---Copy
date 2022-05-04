@@ -149,7 +149,7 @@ public class Drawing
         Raylib.ClearBackground(Color.PINK);
         Raylib.DrawText($"{wellcomeTest}", 10, 10, 40, Color.BLACK);
         Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
-        Raylib.DrawText("champion to become the best syumbol trainer", 10, 90, 40, Color.BLACK);
+        Raylib.DrawText("champion to become the best symbol trainer", 10, 90, 40, Color.BLACK);
         Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
 
         Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
