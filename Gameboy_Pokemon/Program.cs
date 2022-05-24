@@ -26,7 +26,7 @@ string potionHp = "inactive";
 
 string[] fightersOptions = { "triangle", "square", "circle" }; //dena lista andvänds för att veta 
 int n = generator.Next(fightersOptions.Length);                //vilken form fienden ska ha och mot
-string fightersDecided = fightersOptions[n];                   //Vem den har bonus mot
+string fightersDecided = fightersOptions[n];                   //Vem den har bonus mot                  //Vem den har bonus mot
 Raylib.DrawText($"{fightersDecided}", 50, 500, 40, Color.LIGHTGRAY);
 
 //float specialBonus = 5;
