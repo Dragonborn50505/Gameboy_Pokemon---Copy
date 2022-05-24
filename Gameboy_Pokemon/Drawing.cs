@@ -22,11 +22,6 @@ public class Drawing
         return (playerRect, doorRect, doorRect2, level);
     }
 
-
-
-
-
-
     public static (Rectangle, Rectangle, Rectangle, string) outside2Placement(string level,
                 Rectangle playerRect,
                 Rectangle doorRect,
@@ -77,7 +72,8 @@ public class Drawing
     {
         Raylib.ClearBackground(Color.BLUE);
         playerRecAndDorrRec(playerRect, doorRect);
-        Raylib.DrawRectangleRec(bossRect, Color.PURPLE);
+        Raylib.DrawRectangleRec(bossRect, Color.PURPLE); 
+        Raylib.DrawText("Press M if you dont know what to do :)", 1, 10, 40, Color.BLACK);
         return (playerRect, doorRect, bossRect);
     }
 
@@ -149,8 +145,8 @@ public class Drawing
         Raylib.ClearBackground(Color.PINK);
         Raylib.DrawText($"{wellcomeTest}", 10, 10, 40, Color.BLACK);
         Raylib.DrawText("Your mission is to beat Tu Towns", 10, 50, 40, Color.BLACK);
-        Raylib.DrawText("champion to become the best symbol trainer", 10, 90, 40, Color.BLACK);
-        Raylib.DrawText("in the continent", 10, 130, 40, Color.BLACK);
+        Raylib.DrawText("champion to become the best symbol", 10, 90, 40, Color.BLACK);
+        Raylib.DrawText("trainer in the continent", 10, 130, 40, Color.BLACK);
 
         Raylib.DrawText("Controles", 10, 200, 40, Color.BLACK);
         Raylib.DrawText("W: move upp", 10, 250, 40, Color.BLACK);
@@ -160,9 +156,9 @@ public class Drawing
         Raylib.DrawText("M: Menu", 10, 450, 40, Color.BLACK);
 
         Raylib.DrawText("Chose your fighter", 300, 200, 40, Color.BLACK);
-        Raylib.DrawText("Press 1 for Circle", 300, 250, 40, Color.BLACK);
-        Raylib.DrawText("Press 2 for triangle", 300, 300, 40, Color.BLACK);
-        Raylib.DrawText("Press 3 for rectangle", 300, 350, 40, Color.BLACK);
+        Raylib.DrawText("Press 1 for triangle", 300, 250, 40, Color.BLACK);
+        Raylib.DrawText("Press 2 for rectangle", 300, 300, 40, Color.BLACK);
+        Raylib.DrawText("Press 3 for circle", 300, 350, 40, Color.BLACK);
 
         Raylib.DrawText("After picking fighter", 300, 450, 40, Color.BLACK);
         Raylib.DrawText("pess M to leave menu", 300, 500, 40, Color.BLACK);

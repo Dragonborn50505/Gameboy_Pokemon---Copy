@@ -11,6 +11,7 @@ using System.Collections.Generic;
 Raylib.InitWindow(800, 600, "The title of my window");
 Raylib.SetTargetFPS(60);
 Random generator = new Random();
+
 string fight = "noDuring"; // Before, During, Between
 string setup = "noBeingDone";
 float speed = 6f;
@@ -20,6 +21,8 @@ int playerTimer = 0;
 int enemyTimer = 0;
 string potionHp = "inactive";
 
+//GameState gameState = new GameState();
+//gameState.SetTurn("player");
 
 string[] fightersOptions = { "triangle", "square", "circle" }; //dena lista andvänds för att veta 
 int n = generator.Next(fightersOptions.Length);                //vilken form fienden ska ha och mot
